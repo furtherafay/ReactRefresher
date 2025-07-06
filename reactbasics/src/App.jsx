@@ -1,30 +1,23 @@
-import { useState } from "react";
+import { use, useState, useEffect } from "react";
 import "./App.css";
 
-const Card = ({ name }) => {
-  const [liked, setLiked] = useState(false);
+const Timer = () => {
+  const [secs, setSecs] = useState(0);
 
-  const handleClick = () => {
-    const newLiked = !liked;
-    setLiked(newLiked)
-    console.log(`${name} ${newLiked ? "liked" : "unlike"}`);
-  };
+  useEffect(()=>{
+    setInterval(() => {
+      setSecs((prev)=>prev+1)
+    }, 1000);
+    
+  }, [])
 
   return (
-    <div onClick={handleClick}>
-      <h2>{name}</h2>
-    </div>
-  );
+    <div><h2>{secs}</h2></div>
+  )
 };
 
 const App = () => {
-  return (
-    <>
-      <h2>Functional Arrow Component</h2>
-      <Card name="Rafay" />
-      <Card name="Ali" />
-    </>
-  );
+  return <Timer />;
 };
 
 export default App;
